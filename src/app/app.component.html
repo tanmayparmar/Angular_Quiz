@@ -1,0 +1,44 @@
+<div class="container">
+	<div class="row mx-auto">
+		<div class="col-sm-12 col-md-6 col-lg-6 ">
+			<div class="card text-center mt-5" [hidden]="isStart">
+				<div class="card-body text-center">
+					<p class="h3">Welcome to Quizz</p>
+					<button type="button" class="btn btn-primary" (click)="loadQuiz()" >Start the Quiz</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 col-md-6 col-lg-6">
+			<div class="card mt-5 border-0" [hidden]="isDisplay">
+				<div class="card-body">
+					<ul>
+						Question {{i+1}}. {{question}}
+					</ul>
+					<ul *ngFor="let opt of option; let i = index">
+						<div class="checkbox">
+							<label>
+              <input value="" type="radio" name="radiogroup" (click)="selectQuestion($event,opt,i)"
+            >
+           {{opt}}
+   </label>
+						</div>
+					</ul>
+					<button type="button" class="btn btn-secondary ml-2" (click)="nextQuestion()" *ngIf="(i<quizlength && i<4)">Next</button>
+					<button type="button" class="btn btn-secondary ml-2" (click)="nextQuestion()" *ngIf="i == 4">Submit</button>
+				<p class="mt-2">{{alertMessage}}</p>
+        </div>
+			</div>
+		</div>
+	</div>
+	<div class="rowv mt-5" [hidden]="!displayFinalMessage">
+		<div class="col-sm-12 col-md-6 col-lg-6">
+			<div class="card border-0 text-center">
+				<div class="card-body bg-info h4">
+					{{this.finalMessage}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
